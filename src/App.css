@@ -1,38 +1,1061 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+   ========================================================= */
+
+.birthday-page {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 100dvh;
+
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      #fff9fd 0%,
+      #ffe4f4 38%,
+      #cfeaff 100%
+    );
+}
+
+.birthday-hero {
+  position: relative;
+
+  width: 100%;
+
+  /*
+    Exactly one phone viewport tall.
+    The next section starts below this.
+  */
+  height: 100dvh;
+  min-height: 700px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      #fff9fd 0%,
+      #ffe4f4 38%,
+      #cfeaff 100%
+    );
+}
+
+/* =========================================================
+   CONFETTI
+   ========================================================= */
+
+.confetti-container {
+  position: absolute;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+.confetti {
+  position: absolute;
+
+  top: -30px;
+
+  display: block;
+
+  animation-name: confettiFall;
+
+  animation-timing-function: linear;
+
+  animation-iteration-count: infinite;
+
+  opacity: 0;
+}
+
+
+/* Different confetti sizes / positions */
+
+.confetti-0 {
+  left: 5%;
+  font-size: 13px;
+  animation-duration: 5.5s;
+  animation-delay: 0s;
+}
+
+.confetti-1 {
+  left: 12%;
+  font-size: 18px;
+  animation-duration: 6.5s;
+  animation-delay: 0.7s;
+}
+
+.confetti-2 {
+  left: 20%;
+  font-size: 11px;
+  animation-duration: 5s;
+  animation-delay: 1.4s;
+}
+
+.confetti-3 {
+  left: 29%;
+  font-size: 17px;
+  animation-duration: 7s;
+  animation-delay: 0.3s;
+}
+
+.confetti-4 {
+  left: 39%;
+  font-size: 12px;
+  animation-duration: 5.8s;
+  animation-delay: 1.1s;
+}
+
+.confetti-5 {
+  left: 50%;
+  font-size: 18px;
+  animation-duration: 6.8s;
+  animation-delay: 0.5s;
+}
+
+.confetti-6 {
+  left: 62%;
+  font-size: 12px;
+  animation-duration: 5.3s;
+  animation-delay: 1.8s;
+}
+
+.confetti-7 {
+  left: 75%;
+  font-size: 18px;
+  animation-duration: 6.2s;
+  animation-delay: 0.2s;
+}
+
+
+/* =========================================================
+   BIRTHDAY TITLE
+   ========================================================= */
+
+.birthday-title {
+  position: absolute;
+
+  top: 6.5dvh;
+  left: 0;
+
+  width: 100%;
+
+  z-index: 10;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 0 12px;
+
+  text-align: center;
+
+  flex-wrap: wrap;
+
+  line-height: 1;
+
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+/*
+   Each letter starts invisible and pops in.
+*/
+
+.title-letter {
+  display: inline-block;
+
+  font-size: clamp(1.85rem, 8.5vw, 3.4rem);
+
+  font-weight: 900;
+
+  letter-spacing: -1px;
+
+  opacity: 0;
+
+  transform:
+    translateY(25px)
+    scale(0.5);
+
+  background: linear-gradient(
+    90deg,
+    #ff2d95,
+    #ff6b00,
+    #ffd400,
+    #00c9ff,
+    #7b2cff,
+    #ff2d95
+  );
+
+  background-size: 400% auto;
+
+  color: transparent;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  animation:
+    letterAppear 0.55s
+    cubic-bezier(0.17, 0.89, 0.32, 1.49)
+    forwards,
+    
+    letterRainbow 4s
+    linear
+    infinite;
+
+  animation-delay:
+    calc(var(--letter-delay) + 1.05s),
+    0s;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+/*
+   Individual letter delays.
+*/
+
+.title-letter-0  { --letter-delay: 0s; }
+.title-letter-1  { --letter-delay: 0.06s; }
+.title-letter-2  { --letter-delay: 0.12s; }
+.title-letter-3  { --letter-delay: 0.18s; }
+.title-letter-4  { --letter-delay: 0.24s; }
+.title-letter-5  { --letter-delay: 0.30s; }
+.title-letter-6  { --letter-delay: 0.36s; }
+.title-letter-7  { --letter-delay: 0.42s; }
+.title-letter-8  { --letter-delay: 0.48s; }
+.title-letter-9  { --letter-delay: 0.54s; }
+.title-letter-10 { --letter-delay: 0.60s; }
+.title-letter-11 { --letter-delay: 0.66s; }
+.title-letter-12 { --letter-delay: 0.72s; }
+.title-letter-13 { --letter-delay: 0.78s; }
+.title-letter-14 { --letter-delay: 0.84s; }
+
+
+/* =========================================================
+   PEOPLE
+   ========================================================= */
+
+.person {
+  position: absolute;
+
+  z-index: 5;
+
+  width: 27vw;
+
+  max-width: 115px;
+
+  height: 23dvh;
+
   display: flex;
-  flex-direction: column;
-  align-items: center;
+
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+  align-items: flex-end;
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+.person img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(
+      0 8px 7px rgba(0, 0, 0, 0.18)
+    );
+}
+
+
+/*
+   TOP LEFT
+*/
+
+.person-1 {
+  left: 1vw;
+  top: 19dvh;
+
+  transform:
+    translateX(-100px)
+    rotate(-8deg);
+
+  animation:
+    personEnterLeft 0.8s
+    cubic-bezier(0.17, 0.89, 0.32, 1.49)
+    0.3s
+    forwards,
+
+    clapLeft 1.15s
+    ease-in-out
+    1.5s
+    infinite;
+}
+
+
+/*
+   TOP RIGHT
+*/
+
+.person-2 {
+  right: 1vw;
+  top: 19dvh;
+
+  transform:
+    translateX(100px)
+    rotate(8deg);
+
+  animation:
+    personEnterRight 0.8s
+    cubic-bezier(0.17, 0.89, 0.32, 1.49)
+    0.5s
+    forwards,
+
+    clapRight 1.15s
+    ease-in-out
+    1.7s
+    infinite;
+}
+
+
+/*
+   BOTTOM LEFT
+*/
+
+.person-3 {
+  left: 1vw;
+  bottom: 2dvh;
+
+  transform:
+    translateX(-100px)
+    rotate(8deg);
+
+  animation:
+    personEnterLeft 0.8s
+    cubic-bezier(0.17, 0.89, 0.32, 1.49)
+    0.7s
+    forwards,
+
+    clapLeft 1.15s
+    ease-in-out
+    1.9s
+    infinite;
+}
+
+
+/*
+   BOTTOM RIGHT
+*/
+
+.person-4 {
+  right: 1vw;
+  bottom: 2dvh;
+
+  transform:
+    translateX(100px)
+    rotate(-8deg);
+
+  animation:
+    personEnterRight 0.8s
+    cubic-bezier(0.17, 0.89, 0.32, 1.49)
+    0.9s
+    forwards,
+
+    clapRight 1.15s
+    ease-in-out
+    2.1s
+    infinite;
+}
+
+
+/* =========================================================
+   GIRL
+   ========================================================= */
+
+.girl-container {
+  position: absolute;
+
+  z-index: 6;
+
+  left: 50%;
+
+  bottom: -3dvh;
+
+  width: 62vw;
+
+  max-width: 280px;
+
+  height: 67dvh;
+
+  transform:
+    translateX(-50%)
+    translateY(110%);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: flex-end;
+
+  animation:
+    girlEnter 1.1s
+    cubic-bezier(0.17, 0.89, 0.32, 1.25)
+    1.8s
+    forwards;
+}
+
+
+.birthday-girl {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: bottom center;
+
+  filter:
+    drop-shadow(
+      0 15px 12px rgba(0, 0, 0, 0.18)
+    );
+}
+
+
+/*
+   Once the girl enters, give her a very
+   subtle breathing movement.
+*/
+
+.girl-container {
+  animation:
+    girlEnter 1.1s
+      cubic-bezier(0.17, 0.89, 0.32, 1.25)
+      1.8s
+      forwards;
+}
+
+
+/* =========================================================
+   SPARKLES
+   ========================================================= */
+
+.sparkle {
+  position: absolute;
+
+  z-index: 8;
+
   color: white;
+
+  font-size: 28px;
+
+  opacity: 0;
+
+  text-shadow:
+    0 0 7px #ff43ae,
+    0 0 18px #ff43ae;
+
+  animation:
+    sparkleAppear 0.6s ease-out forwards,
+    sparklePulse 1.8s ease-in-out infinite;
 }
 
-.App-link {
-  color: #61dafb;
+.sparkle-1 {
+  left: 25%;
+  top: 29%;
+
+  animation-delay: 2.2s, 2.8s;
 }
 
-@keyframes App-logo-spin {
+.sparkle-2 {
+  right: 22%;
+  top: 36%;
+
+  animation-delay: 2.4s, 3s;
+}
+
+.sparkle-3 {
+  left: 20%;
+  bottom: 32%;
+
+  animation-delay: 2.6s, 3.2s;
+}
+
+.sparkle-4 {
+  right: 18%;
+  bottom: 35%;
+
+  animation-delay: 2.8s, 3.4s;
+}
+
+.sparkle-5 {
+  left: 7%;
+  top: 51%;
+
+  font-size: 20px;
+
+  animation-delay: 3s, 3.6s;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+
+/*
+   Confetti
+*/
+
+@keyframes confettiFall {
+
+  0% {
+    transform:
+      translateY(-40px)
+      rotate(0deg);
+
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.9;
+  }
+
+  90% {
+    opacity: 0.9;
+  }
+
+  100% {
+    transform:
+      translateY(110dvh)
+      rotate(360deg);
+
+    opacity: 0;
+  }
+}
+
+
+/*
+   Title letter entrance
+*/
+
+@keyframes letterAppear {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(25px)
+      scale(0.5)
+      rotate(-10deg);
+  }
+
+  70% {
+    opacity: 1;
+
+    transform:
+      translateY(-5px)
+      scale(1.12)
+      rotate(3deg);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1)
+      rotate(0deg);
+  }
+}
+
+
+/*
+   Rainbow continuously moves through text
+*/
+
+@keyframes letterRainbow {
+
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: 400% center;
+  }
+}
+
+
+/*
+   People enter from the sides
+*/
+
+@keyframes personEnterLeft {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateX(-100px)
+      rotate(-12deg)
+      scale(0.7);
+  }
+
+  70% {
+    opacity: 1;
+
+    transform:
+      translateX(8px)
+      rotate(4deg)
+      scale(1.04);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateX(0)
+      rotate(0deg)
+      scale(1);
+  }
+}
+
+
+@keyframes personEnterRight {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateX(100px)
+      rotate(12deg)
+      scale(0.7);
+  }
+
+  70% {
+    opacity: 1;
+
+    transform:
+      translateX(-8px)
+      rotate(-4deg)
+      scale(1.04);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateX(0)
+      rotate(0deg)
+      scale(1);
+  }
+}
+
+
+/*
+   Subtle "clapping" effect.
+
+   Since the hands are already in the images,
+   we're moving/scaling the entire character
+   slightly to make it feel animated.
+*/
+
+@keyframes clapLeft {
+
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      rotate(0deg)
+      scale(1);
+  }
+
+  25% {
+    transform:
+      translateY(-4px)
+      rotate(-2deg)
+      scale(1.025);
+  }
+
+  50% {
+    transform:
+      translateY(0)
+      rotate(1deg)
+      scale(0.98);
+  }
+
+  75% {
+    transform:
+      translateY(-3px)
+      rotate(-1deg)
+      scale(1.02);
+  }
+}
+
+
+@keyframes clapRight {
+
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      rotate(0deg)
+      scale(1);
+  }
+
+  25% {
+    transform:
+      translateY(-4px)
+      rotate(2deg)
+      scale(1.025);
+  }
+
+  50% {
+    transform:
+      translateY(0)
+      rotate(-1deg)
+      scale(0.98);
+  }
+
+  75% {
+    transform:
+      translateY(-3px)
+      rotate(1deg)
+      scale(1.02);
+  }
+}
+
+
+/*
+   Girl rises into the scene.
+*/
+
+@keyframes girlEnter {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateX(-50%)
+      translateY(110%)
+      scale(0.92);
+  }
+
+  60% {
+    opacity: 1;
+
+    transform:
+      translateX(-50%)
+      translateY(-3%)
+      scale(1.02);
+  }
+
+  80% {
+    transform:
+      translateX(-50%)
+      translateY(1%)
+      scale(0.99);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateX(-50%)
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/*
+   Sparkles
+*/
+
+@keyframes sparkleAppear {
+
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+
+    transform:
+      scale(0)
+      rotate(-45deg);
   }
+
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+
+    transform:
+      scale(1)
+      rotate(0deg);
   }
+}
+
+
+@keyframes sparklePulse {
+
+  0%,
+  100% {
+    transform:
+      scale(0.8)
+      rotate(0deg);
+
+    opacity: 0.5;
+  }
+
+  50% {
+    transform:
+      scale(1.3)
+      rotate(20deg);
+
+    opacity: 1;
+  }
+}
+
+
+/* =========================================================
+   IPHONE 15 SPECIFIC TUNING
+   ========================================================= */
+
+@media (min-width: 370px) and (max-width: 430px) {
+
+  .birthday-title {
+  position: absolute;
+
+  top: 5dvh;
+  left: 50%;
+
+  width: 94%;
+
+  transform: translateX(-50%);
+
+  z-index: 10;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  text-align: center;
+
+  line-height: 0.95;
+
+  padding: 0 8px;
+
+  pointer-events: none;
+}
+
+  .person {
+    width: 28vw;
+
+    max-width: 112px;
+
+    height: 22dvh;
+  }
+
+  .person-1,
+  .person-2 {
+    top: 20dvh;
+  }
+
+  .person-3,
+  .person-4 {
+    bottom: 3dvh;
+  }
+
+  .girl-container {
+    width: 63vw;
+
+    max-width: 285px;
+
+    height: 66dvh;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-height: 750px) {
+
+  .birthday-title {
+    top: 4dvh;
+  }
+
+  .person {
+    height: 20dvh;
+  }
+
+  .person-1,
+  .person-2 {
+    top: 18dvh;
+  }
+
+  .person-3,
+  .person-4 {
+    bottom: 1dvh;
+  }
+
+  .girl-container {
+    height: 64dvh;
+  }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+}
+
+
+.message-section {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 100dvh;
+
+  padding: 70px 20px 80px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: flex-start;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffe4f4 0%,
+      #fff3fa 25%,
+      #fff9fd 100%
+    );
+}
+
+.message-card {
+  position: relative;
+
+  width: 100%;
+
+  max-width: 500px;
+
+  padding: 35px 25px 40px;
+
+  border-radius: 28px;
+
+  background: rgba(255, 255, 255, 0.75);
+
+  box-shadow:
+    0 15px 45px rgba(180, 90, 150, 0.15);
+
+  border: 1px solid rgba(255, 255, 255, 0.9);
+
+  /*
+    Fancy handwritten style.
+  */
+  font-family:
+    "Segoe Print",
+    "Bradley Hand",
+    "Comic Sans MS",
+    cursive;
+
+  color: #633b58;
+
+  backdrop-filter: blur(8px);
+
+  animation:
+    messageAppear 0.9s ease-out both;
+}
+
+.message-card h2 {
+  margin: 0 0 25px;
+
+  text-align: center;
+
+  font-family:
+    "Segoe Print",
+    "Bradley Hand",
+    cursive;
+
+  font-size: clamp(1.8rem, 8vw, 2.7rem);
+
+  color: #d83b91;
+
+  line-height: 1.2;
+}
+
+.message-card p {
+  margin: 0 0 22px;
+
+  font-size: clamp(1.05rem, 4.7vw, 1.3rem);
+
+  line-height: 1.8;
+
+  text-align: left;
+}
+
+.message-signature {
+  margin-top: 35px !important;
+
+  text-align: right !important;
+
+  font-size: 1.2rem !important;
+
+  color: #d83b91;
+}
+
+.message-deco {
+  text-align: center;
+
+  color: #ff65b3;
+
+  font-family: cursive;
+
+  font-size: 32px;
+
+  margin-bottom: 10px;
+}
+
+.bottom-deco {
+  margin-top: 25px;
+  margin-bottom: 0;
 }
